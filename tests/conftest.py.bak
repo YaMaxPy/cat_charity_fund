@@ -11,35 +11,43 @@ try:
     from app.main import app  # noqa
 except (NameError, ImportError):
     raise AssertionError(
-        'Не обнаружен объект приложения `app`.'
-        'Проверьте и поправьте: он должен быть доступен в модуле `app.main`.',
+        (
+            'Не обнаружен объект приложения `app`.Проверьте и поправьте: он'
+            ' должен быть доступен в модуле `app.main`.'
+        ),
     )
 
 try:
     from app.core.db import Base, get_async_session  # noqa
 except (NameError, ImportError):
     raise AssertionError(
-        'Не обнаружены объекты `Base, get_async_session`. '
-        'Проверьте и поправьте: они должны быть доступны в модуле '
-        '`app.core.db`.',
+        (
+            'Не обнаружены объекты `Base, get_async_session`. '
+            'Проверьте и поправьте: они должны быть доступны в модуле '
+            '`app.core.db`.'
+        ),
     )
 
 try:
     from app.core.user import current_superuser, current_user  # noqa
 except (NameError, ImportError):
     raise AssertionError(
-        'Не обнаружены объекты `current_superuser, current_user`.'
-        'Проверьте и поправьте: они должны быть доступны в модуле '
-        '`app.code.user`',
+        (
+            'Не обнаружены объекты `current_superuser, current_user`.'
+            'Проверьте и поправьте: они должны быть доступны в модуле '
+            '`app.code.user`'
+        ),
     )
 
 try:
     from app.schemas.user import UserCreate  # noqa
 except (NameError, ImportError):
     raise AssertionError(
-        'Не обнаружена схема создания пользователя UserCreate. '
-        'Проверьте и поправьте: она должна быть доступна в модуле '
-        '`app.schemas.user`.',
+        (
+            'Не обнаружена схема создания пользователя UserCreate. '
+            'Проверьте и поправьте: она должна быть доступна в модуле '
+            '`app.schemas.user`.'
+        ),
     )
 
 
@@ -57,7 +65,10 @@ engine = create_async_engine(
     connect_args={'check_same_thread': False},
 )
 TestingSessionLocal = sessionmaker(
-    class_=AsyncSession, autocommit=False, autoflush=False, bind=engine,
+    class_=AsyncSession,
+    autocommit=False,
+    autoflush=False,
+    bind=engine,
 )
 
 
